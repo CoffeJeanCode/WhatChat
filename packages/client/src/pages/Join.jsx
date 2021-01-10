@@ -1,14 +1,21 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useLocation } from 'wouter'
+import { useTitle } from '../hooks/useTitle'
 
 export default function Join() {
   const [name, setName] = useState('')
   const [room, setRoom] = useState('')
-
+  const [, setLocation] = useLocation()
+  useTitle(`WhatChat`)
   return (
     <div className="joinOuterContainer">
       <div className="joinInnerContainer">
-        <form>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault()
+            setLocation(`/chat/${room}/${name}`)
+          }}
+        >
           <h1 className="title">What Chat</h1>
           <h2 className="heading">Join</h2>
           <div>
@@ -29,15 +36,9 @@ export default function Join() {
               onChange={(e) => setRoom(e.target.value)}
             />
           </div>
-          <Link
-            onClick={(e) => (!name || !room ? e.preventDefault() : null)}
-            onKeyPress={(e) => (e.key === 'Enter' ? e.preventDefault() : null)}
-            to={`/chat/?name=${name}&room=${room}`}
-          >
-            <button className="button mt-20" type="submit">
-              Sign In
-            </button>
-          </Link>
+          <button className="button mt-20" type="submit">
+            Sign In
+          </button>
         </form>
       </div>
     </div>

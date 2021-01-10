@@ -5,6 +5,7 @@ import express from 'express'
 import cors from 'cors'
 import SocketIO from 'socket.io'
 import http from 'http'
+import sockets from "./sockets"
 
 // Intialization
 const app = express()

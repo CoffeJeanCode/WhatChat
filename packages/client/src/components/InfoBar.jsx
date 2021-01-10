@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
-import { Link } from 'wouter'
+import { useLocation } from 'wouter'
 import Icon from './Icons/Icons'
 import Clipboard from 'clipboard'
 
 export default function InfoBar({ room }) {
+  const [, setLocation] = useLocation()
   useEffect(() => {
     new Clipboard('.btn')
   }, [])
@@ -20,9 +21,9 @@ export default function InfoBar({ room }) {
         </button>
       </div>
       <div className="rightInnerContainer">
-        <Link to="/">
+        <div onClick={() => setLocation('/')}>
           <Icon type="closeIcon" />
-        </Link>
+        </div>
       </div>
     </div>
   )

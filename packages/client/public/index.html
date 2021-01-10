@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preload" href="/dist/index.js" as="script" />
+    <link
+      rel="preload"
+      href="https://kit-pro.fontawesome.com/releases/latest/js/pro.min.js"
+    />
     <script
       src="https://kit-pro.fontawesome.com/releases/latest/js/pro.min.js"
       data-fetch-svg-from="https://kit-pro.fontawesome.com/releases/latest/svgs"
@@ -10,7 +15,30 @@
       data-auto-fetch-svg
       defer
     ></script>
-    <title>Snowpack App</title>
+    <title>WhatChat</title>
+    <meta name="title" content="WhatChat" />
+    <meta
+      name="description"
+      content="Hey, you want chat with your friends, come to WhatChat and do it"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://whatchat.netlify.app/" />
+    <meta property="og:title" content="WhatChat" />
+    <meta
+      property="og:description"
+      content="Hey, you want chat with your friends, come to WhatChat and do it "
+    />
+    <meta property="og:image" content="/preview.png" />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://whatchat.netlify.app/" />
+    <meta property="twitter:title" content="WhatChat" />
+    <meta
+      property="twitter:description"
+      content="Hey, you want chat with your friends, come to WhatChat and do it"
+    />
+    <meta property="twitter:image" content="/preview.png" />
   </head>
   <body>
     <div id="root"></div>

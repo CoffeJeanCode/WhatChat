@@ -1,27 +1,31 @@
-import React, { useState, useEffect } from 'react'
-import queryString from 'query-string'
+import React, { useState, useEffect, useRef } from 'react'
 import io from 'socket.io-client'
 
-import InfoBar from './InfoBar'
-import Input from './Input'
-import Messages from './Messages'
-import TextContainer from './TextContainer'
+import InfoBar from '../components/InfoBar'
+import Input from '../components/Input'
+import Messages from '../components/Messages'
+import TextContainer from '../components/TextContainer'
 
-import notification from '../assets/juntos.mp3'
+import notification from '../assets/notification.mp3'
+import { useTitle } from '../hooks/useTitle'
 
 let socket
+
 const ENDPOINT = 'https://chattie-sockets.herokuapp.com/'
-export default function Chat({ location }) {
+
+export default function Chat({ params }) {
   const [name, setName] = useState('')
   const [room, setRoom] = useState('')
   const [message, setMessage] = useState('')
   const [users, setUsers] = useState([])
   const [messages, setMessages] = useState([])
+  const notificationRef = useRef(null)
+  useTitle(`${params.name} | WhatChat`)
 
   useEffect(() => {
     socket = io(ENDPOINT)
 
-    const { name, room } = queryString.parse(location.search)
+    const { name, room } = params
 
     setRoom(room)
     setName(name)
@@ -29,10 +33,6 @@ export default function Chat({ location }) {
     socket.emit('join', { name, room }, (error) => {
       error && alert(error)
     })
-  }, [ENDPOINT, location.search])
-
-  useEffect(() => {
-    const notificationRef = useRef(null)
     notificationRef.current.volume = 50 / 100
 
     socket.on('message', (message) => {
@@ -49,14 +49,13 @@ export default function Chat({ location }) {
     socket.on('roomData', ({ users }) => {
       setUsers(users)
     })
-    // eslint-disable-next-line
   }, [])
 
   const sendMessage = (e) => {
     e.preventDefault()
 
     if (message) {
-      socket.emit('sendMessage', message, () => setMessage(''))
+      socket.emit('sendMessage', message)
       setMessage('')
     }
   }

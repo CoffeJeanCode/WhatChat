@@ -30,7 +30,7 @@ const sockets = (socket, io) => {
     callback()
   })
 
-  socket.on('sendMessage', (message, callback) => {
+  socket.on('sendMessage', (message) => {
     const user = getUser({ id: socket.id })
 
     if (!user) return
@@ -40,8 +40,6 @@ const sockets = (socket, io) => {
       room: user.room,
       users: getUsersInRoom({ room: user.room }),
     })
-
-    callback()
   })
 
   socket.on('disconnect', () => {

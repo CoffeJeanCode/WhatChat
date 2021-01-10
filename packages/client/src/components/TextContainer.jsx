@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const TextContainer = ({ users }) => (
-  <div className="textContainer">
+  <section className="textContainer">
     {users && window.innerWidth > 480 && (
       <div>
         <h1>People currently chatting:</h1>
@@ -17,7 +17,7 @@ const TextContainer = ({ users }) => (
         </div>
       </div>
     )}
-  </div>
+  </section>
 )
 
-export default TextContainer;
+export default React.memo(TextContainer)
