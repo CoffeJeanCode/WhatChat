@@ -1,0 +1,6 @@
+[submodule "WhatChat-Server"]
+	path = WhatChat-Server
+	url = https://github.com/CoffeJeanCode/WhatChat-Server
+[submodule "WhatChat-Client"]
+	path = WhatChat-Client
+	url = https://github.com/CoffeJeanCode/WhatChat-Client
